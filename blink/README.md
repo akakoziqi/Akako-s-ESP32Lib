@@ -1,5 +1,6 @@
-# Hello World Example
+# 点灯程序
+配置LED对应的GPIO引脚使其闪烁
+详细见代码注释
 
-Starts a FreeRTOS task to print "Hello World"
-
-See the README.md file in the upper level 'examples' directory for more information about examples.
+各个函数的功能参见编程指南
+[ESP-IDF编程指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/api-reference/peripherals/gpio.html)
