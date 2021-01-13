@@ -29,7 +29,7 @@ void DelayMS(int t)
 //LED电平翻转函数
 void LEDtoggle(int LED_GPIO)
 {
-    gpio_set_level(LED_IO, !gpio_get_level(LED_IO));
+    gpio_set_level(LED_GPIO, !gpio_get_level(LED_GPIO));
 }
 
 void app_main(void)
