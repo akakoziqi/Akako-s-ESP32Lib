@@ -1,5 +1,9 @@
-# Hello World Example
+# 按键点亮LED实验
 
-Starts a FreeRTOS task to print "Hello World"
+将按键引脚设置为上拉（下拉也可）输入模式，然后轮询检测按键引脚的电平值
 
-See the README.md file in the upper level 'examples' directory for more information about examples.
+如果检测到为低电平（高电平），说明按键被按下。
+
+程序中使用了一些FreeRTOS的函数，比如创建任务xTaskCreate();
+
+可以实现简单的多任务
