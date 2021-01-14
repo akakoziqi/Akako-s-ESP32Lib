@@ -27,27 +27,27 @@ uint32_t current_duty = 0;
 uint32_t target_duty = 4095;
 
 //定时器配置结构体
-ledc_timer_config_t ledc_timer;
+ledc_timer_config_t ledc_timer_conf;
 //ledc通道配置结构体
-ledc_channel_config_t ledc_struct;
+ledc_channel_config_t ledc_conf;
 
 void ledc_init(void)
 {
 
    //定时器配置->timer0
-   ledc_timer.duty_resolution = LEDC_TIMER_12_BIT; //PWM分辨率
-   ledc_timer.freq_hz = 10000;                     //频率
-   ledc_timer.speed_mode = LEDC_HIGH_SPEED_MODE;   //速度
-   ledc_timer.timer_num = LEDC_TIMER_0;            //选择定时器0-3
+   ledc_timer_conf.duty_resolution = LEDC_TIMER_12_BIT; //PWM分辨率
+   ledc_timer_conf.freq_hz = 10000;                     //频率
+   ledc_timer_conf.speed_mode = LEDC_HIGH_SPEED_MODE;   //速度
+   ledc_timer_conf.timer_num = LEDC_TIMER_0;            //选择定时器0-3
    //设置定时器PWM模式
    ledc_timer_config(&ledc_timer);
 
    //通道映射GPIO2->channel0
-   ledc_struct.gpio_num = LED_IO;                 //GPIO映射
-   ledc_struct.channel = LEDC_CHANNEL_0;          //LEDC通道
-   ledc_struct.duty = 0;                          //占空比
-   ledc_struct.speed_mode = LEDC_HIGH_SPEED_MODE; //速度
-   ledc_struct.intr_type = LEDC_INTR_DISABLE;     //中断类型
+   ledc_conf.gpio_num = LED_IO;                 //GPIO映射
+   ledc_conf.channel = LEDC_CHANNEL_0;          //LEDC通道
+   ledc_conf.duty = 0;                          //占空比
+   ledc_conf.speed_mode = LEDC_HIGH_SPEED_MODE; //速度
+   ledc_conf.intr_type = LEDC_INTR_DISABLE;     //中断类型
    ledc_channel_config(&ledc_struct);
    //使能渐变函数
    ledc_fade_func_install(0);
@@ -64,9 +64,9 @@ void SetBrightness(void *pvParameters)
    {
       if (current_duty != target_duty)
       {
-         ledc_set_fade_with_time(ledc_struct.speed_mode, ledc_struct.channel, target_duty, LED_FADE_TIME);
+         ledc_set_fade_with_time(ledc_conf.speed_mode, ledc_conf.channel, target_duty, LED_FADE_TIME);
          ESP_LOGI(TAG, "Set brightness %d to %d", current_duty, target_duty);
-         ledc_fade_start(ledc_struct.speed_mode, ledc_struct.channel, LEDC_FADE_NO_WAIT);
+         ledc_fade_start(ledc_conf.speed_mode, ledc_conf.channel, LEDC_FADE_NO_WAIT);
          current_duty = target_duty;
       }
       DelayMS(50);
