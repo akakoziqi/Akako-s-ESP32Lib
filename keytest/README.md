@@ -7,3 +7,8 @@
 程序中使用了一些FreeRTOS的函数，比如创建任务xTaskCreate();
 
 可以实现简单的多任务
+
+使用USING_INTR宏定义可以启用按键中断
+
+
+USING_POLLING是传统的轮询方式
